@@ -1,0 +1,24 @@
+body {
+    background: #f4f6fb;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    color: #2d3748;
+}
+h1 {
+    color: #1a365d;
+    font-weight: 700;
+    border-left: 6px solid #3182ce;
+    padding-left: 12px;
+}
+.card, .form-card {
+    border: 1px solid #dbe3f0;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(26, 54, 93, .08);
+    background: #fff;
+}
+.form-card { padding: 24px; }
+.table thead th { border-bottom: 2px solid #2b6cb0; }
+.table td, .table th { vertical-align: middle; }
+.btn-primary { background: #3182ce; border-color: #2b6cb0; }
+.btn-primary:hover { background: #2b6cb0; }
+.erro { color: #c53030; font-size: .875rem; margin-top: 4px; }
+.estoque-baixo { color: #c53030; font-weight: 600; }

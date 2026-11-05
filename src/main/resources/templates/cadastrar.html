@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+          crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+    <title>Cadastrar Produto</title>
+</head>
+<body>
+<div class="container mt-5 mb-5">
+    <h1 class="mb-4">Cadastrar Produto</h1>
+
+    <div class="form-card">
+        <form th:action="@{/cadastrar}" th:object="${produto}" method="post" novalidate>
+
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input class="form-control" type="text" th:field="*{nome}"
+                       th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'"
+                       placeholder="Ex: Camiseta, Notebook..." />
+                <div class="erro" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="descricao">Descrição (opcional)</label>
+                <input class="form-control" type="text" th:field="*{descricao}"
+                       th:classappend="${#fields.hasErrors('descricao')} ? 'is-invalid'"
+                       placeholder="Ex: Algodão, tamanho M" />
+                <div class="erro" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="preco">Preço (R$)</label>
+                    <input class="form-control" type="number" th:field="*{preco}" step="0.01"
+                           th:classappend="${#fields.hasErrors('preco')} ? 'is-invalid'"
+                           placeholder="Ex: 49.90" />
+                    <div class="erro" th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="estoque">Estoque (unidades)</label>
+                    <input class="form-control" type="number" th:field="*{estoque}" step="1"
+                           th:classappend="${#fields.hasErrors('estoque')} ? 'is-invalid'"
+                           placeholder="Ex: 10" />
+                    <div class="erro" th:if="${#fields.hasErrors('estoque')}" th:errors="*{estoque}"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="categoria">Categoria</label>
+                <select class="form-control" th:field="*{categoria}"
+                        th:classappend="${#fields.hasErrors('categoria')} ? 'is-invalid'">
+                    <option value="">Selecione...</option>
+                    <option th:each="c : ${categorias}" th:value="${c}" th:text="${c}">Categoria</option>
+                </select>
+                <div class="erro" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Cadastrar</button>
+            <a th:href="@{/lista}" class="btn btn-secondary">Ver lista de produtos</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>
